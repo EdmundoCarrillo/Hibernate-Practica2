@@ -5,6 +5,8 @@ package com.escom.practica2.dao;
  * @author DARTH VADER
  */
 import com.escom.practica2.modelo.Materia;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -12,10 +14,15 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class MateriaDao {
-    
-     public void addMateria(Materia materia) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+public class MateriaDao extends UnicastRemoteObject implements MateriaInterfaz {
+
+    public MateriaDao() throws RemoteException {
+        super();
+    }
+
+    @Override
+    public void addMateria(Materia materia) throws RemoteException {
+         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -34,8 +41,9 @@ public class MateriaDao {
         }
     }
 
-    public void daleteMateria(Materia materia) {
-        Transaction tr = null;
+    @Override
+    public void deleteMateria(Materia materia) throws RemoteException {
+         Transaction tr = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             tr = session.beginTransaction();
@@ -54,8 +62,9 @@ public class MateriaDao {
         }
     }
 
-    public void updateMateria(Materia materia) {
-        Transaction tr = null;
+    @Override
+    public void uptadeMateria(Materia materia) throws RemoteException {
+          Transaction tr = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             tr = session.beginTransaction();
@@ -74,8 +83,9 @@ public class MateriaDao {
         }
     }
 
-    public List<Materia> getAllMaterias() {
-        List<Materia> materias = new ArrayList<>();
+    @Override
+    public List<Materia> getAllMaterias() throws RemoteException {
+         List<Materia> materias = new ArrayList<>();
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -88,10 +98,12 @@ public class MateriaDao {
             session.close();
         }
         return materias;
+        
     }
 
+    @Override
     public Materia getMateriaById(int idMateria) {
-        Materia materia = null;
+          Materia materia = null;
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -108,17 +120,5 @@ public class MateriaDao {
         }
         return materia;
     }
-    
-//    public static void main(String[] args) {
-//        MateriaDao op = new MateriaDao ();
-//        Materia materia = new Materia();
-//        materia.setNombre("Sistemas Distribuidos");
-//        materia.setCreditos(5);
-//        op.addMateria(materia);
-//        
-//        Materia mat  = new Materia();
-//        mat =op.getMateriaById(1);
-//        System.out.println(mat.getNombre());
-//    }
 
 }
