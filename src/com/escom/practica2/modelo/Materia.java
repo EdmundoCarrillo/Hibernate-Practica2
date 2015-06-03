@@ -1,5 +1,5 @@
 package com.escom.practica2.modelo;
-// Generated 3/06/2015 12:37:11 AM by Hibernate Tools 3.6.0
+// Generated 3/06/2015 04:00:34 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
@@ -12,6 +12,7 @@ public class Materia  implements java.io.Serializable {
 
 
      private Integer idmateria;
+     private Profesor profesor;
      private String nombre;
      private int creditos;
      private Set examens = new HashSet(0);
@@ -20,11 +21,13 @@ public class Materia  implements java.io.Serializable {
     }
 
 	
-    public Materia(String nombre, int creditos) {
+    public Materia(Profesor profesor, String nombre, int creditos) {
+        this.profesor = profesor;
         this.nombre = nombre;
         this.creditos = creditos;
     }
-    public Materia(String nombre, int creditos, Set examens) {
+    public Materia(Profesor profesor, String nombre, int creditos, Set examens) {
+       this.profesor = profesor;
        this.nombre = nombre;
        this.creditos = creditos;
        this.examens = examens;
@@ -36,6 +39,13 @@ public class Materia  implements java.io.Serializable {
     
     public void setIdmateria(Integer idmateria) {
         this.idmateria = idmateria;
+    }
+    public Profesor getProfesor() {
+        return this.profesor;
+    }
+    
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
     public String getNombre() {
         return this.nombre;

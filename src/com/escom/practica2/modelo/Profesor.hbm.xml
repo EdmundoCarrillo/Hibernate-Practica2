@@ -3,14 +3,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 3/06/2015 04:00:35 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-    <class name="com.escom.practica2.modelo.Alumno" table="alumno" catalog="practica2final">
-        <id name="matricula" type="java.lang.Integer">
-            <column name="matricula" />
+    <class name="com.escom.practica2.modelo.Profesor" table="profesor" catalog="practica2final">
+        <id name="idprofesor" type="java.lang.Integer">
+            <column name="idprofesor" />
             <generator class="identity" />
         </id>
-        <many-to-one name="carrera" class="com.escom.practica2.modelo.Carrera" fetch="select">
-            <column name="idcarrera" not-null="true" />
-        </many-to-one>
         <property name="nombre" type="string">
             <column name="nombre" length="45" not-null="true" />
         </property>
@@ -18,16 +15,16 @@
             <column name="apellidoPaterno" length="45" not-null="true" />
         </property>
         <property name="apellidoMaterno" type="string">
-            <column name="apellidoMaterno" length="45" />
+            <column name="apellidoMaterno" length="45" not-null="true" />
         </property>
         <property name="email" type="string">
             <column name="email" length="45" not-null="true" />
         </property>
-        <set name="calificacions" table="calificacion" inverse="true" lazy="true" fetch="select">
+        <set name="materias" table="materia" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="matricula" not-null="true" />
+                <column name="idprofesor" not-null="true" />
             </key>
-            <one-to-many class="com.escom.practica2.modelo.Calificacion" />
+            <one-to-many class="com.escom.practica2.modelo.Materia" />
         </set>
     </class>
 </hibernate-mapping>

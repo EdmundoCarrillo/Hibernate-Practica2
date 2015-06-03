@@ -1,5 +1,5 @@
 package com.escom.practica2.modelo;
-// Generated 3/06/2015 12:37:11 AM by Hibernate Tools 3.6.0
+// Generated 3/06/2015 04:00:34 PM by Hibernate Tools 3.6.0
 
 
 import java.util.HashSet;
