@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/06/2015 12:37:11 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.escom.practica2.modelo.Carrera" table="carrera" catalog="practica2">
+        <id name="idcarrera" type="java.lang.Integer">
+            <column name="idcarrera" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="centrotrabajo" class="com.escom.practica2.modelo.Centrotrabajo" fetch="select">
+            <column name="idcentroTrabajo" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="duracion" type="double">
+            <column name="duracion" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="alumnos" table="alumno" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcarrera" not-null="true" />
+            </key>
+            <one-to-many class="com.escom.practica2.modelo.Alumno" />
+        </set>
+    </class>
+</hibernate-mapping>

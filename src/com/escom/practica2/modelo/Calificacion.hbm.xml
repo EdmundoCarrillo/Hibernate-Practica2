@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 3/06/2015 12:37:11 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.escom.practica2.modelo.Calificacion" table="calificacion" catalog="practica2">
+        <id name="idcalificacion" type="java.lang.Integer">
+            <column name="idcalificacion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="alumno" class="com.escom.practica2.modelo.Alumno" fetch="select">
+            <column name="matricula" not-null="true" />
+        </many-to-one>
+        <many-to-one name="examen" class="com.escom.practica2.modelo.Examen" fetch="select">
+            <column name="idexamen" not-null="true" />
+        </many-to-one>
+        <property name="puntaje" type="double">
+            <column name="puntaje" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
