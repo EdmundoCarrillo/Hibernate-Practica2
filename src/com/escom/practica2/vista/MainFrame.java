@@ -230,7 +230,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktop;
+    public static javax.swing.JDesktopPane desktop;
     private javax.swing.JMenuItem itemCategorias;
     private javax.swing.JMenuItem itemGraficas;
     private javax.swing.JMenuItem itemProductos;

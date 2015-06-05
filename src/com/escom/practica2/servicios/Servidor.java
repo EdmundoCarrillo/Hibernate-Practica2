@@ -24,8 +24,10 @@ public class Servidor {
         LocateRegistry.createRegistry(1099);
         AlumnoDao alumnoDao= new AlumnoDao();
         MateriaDao materiaDao = new MateriaDao();
+        ExamenDao examenDao  = new ExamenDao();
         Naming.rebind("ServidorDaoAlumno",alumnoDao);
         Naming.rebind("Materia",materiaDao);
+        Naming.rebind("Examen",examenDao);
          System.out.println("servidor corriendo");
         }catch(RemoteException | MalformedURLException e){}
     }

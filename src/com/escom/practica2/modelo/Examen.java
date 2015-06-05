@@ -78,6 +78,7 @@ public class Examen  implements java.io.Serializable {
     public void setPreguntas(Set preguntas) {
         this.preguntas = preguntas;
     }
+    
 
 
 

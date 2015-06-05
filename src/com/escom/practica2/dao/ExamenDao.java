@@ -22,24 +22,27 @@ public class ExamenDao extends UnicastRemoteObject implements ExamenInterfaz {
     }
 
     @Override
-    public List<Examen> getAllExamenes() throws RemoteException {
+    public List<Examen> getAllExamenes(int idMateria) throws RemoteException {
         List<Examen> examenes = new ArrayList<>();
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            examenes = session.createQuery("from Examen").list();
+            String q = "from Examen where idmateria= :idMateria";
+            Query query = session.createQuery(q);
+            query.setInteger("idMateria", idMateria);
+            examenes = query.list();
         } catch (HibernateException e) {
             System.out.println(e.toString());
         } finally {
-          
+
             session.close();
         }
         return examenes;
     }
 //    public static void main(String[] args) throws RemoteException {
 //        ExamenDao op  =new  ExamenDao();
-//        List<Examen> lista  = op.getAllExamenes();
-//        System.out.println(lista.get(0).getFecha());
+//        List<Examen> lista  = op.getAllExamenes(1);
+//        System.out.println(lista.get(1).getIdexamen());
 //    }
 }

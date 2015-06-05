@@ -20,7 +20,7 @@ public interface ExamenInterfaz extends Remote {
 //public void addAlumno(Alumno alumno)throws RemoteException; 
 //public void deleteAlumno(Alumno alumno)throws RemoteException;
 //public void uptadeAlumno(Alumno alumno)throws RemoteException;
-public List<Examen> getAllExamenes()throws RemoteException;
+public List<Examen> getAllExamenes(int idMateria)throws RemoteException;
 //public Alumno getAlumnoById(int idAlumno)throws RemoteException;
 
 

@@ -69,6 +69,10 @@ public class Materia  implements java.io.Serializable {
         this.examens = examens;
     }
 
+   public String toString(){
+       return nombre;
+   }
+
    
 
 
