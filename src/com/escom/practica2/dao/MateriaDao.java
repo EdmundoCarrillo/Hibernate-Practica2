@@ -85,7 +85,7 @@ public class MateriaDao extends UnicastRemoteObject implements MateriaInterfaz {
 //
     @Override
     public List<Materia> getAllMaterias() throws RemoteException {
-         List<Materia> materias = new ArrayList<>();
+        List<Materia> materias = new ArrayList<>();
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -94,11 +94,11 @@ public class MateriaDao extends UnicastRemoteObject implements MateriaInterfaz {
         } catch (HibernateException e) {
             System.out.println(e.toString());
         } finally {
-            
+
             session.close();
         }
         return materias;
-        
+
     }
 //
 //    @Override
@@ -120,5 +120,11 @@ public class MateriaDao extends UnicastRemoteObject implements MateriaInterfaz {
 //        }
 //        return materia;
 //    }
+
+    public static void main(String[] args) throws RemoteException {
+        MateriaDao op  = new MateriaDao  ();
+        List<Materia> lista  = op.getAllMaterias();
+        System.out.println(lista.get(0).getNombre());
+    }
 
 }

@@ -120,10 +120,17 @@ public class Materias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboMateriasActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ExamenFrame frameUno = new ExamenFrame();
+        ExamenFrame frameUno = null;
+        try {
+            frameUno = new ExamenFrame(idExamen);
+        } catch (RemoteException | NotBoundException | MalformedURLException ex) {
+            Logger.getLogger(Materias.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         MainFrame.desktop.add(frameUno);
-        frameUno.setIdExamen(idExamen);
+        
         frameUno.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tablaExamenesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaExamenesMouseClicked
@@ -135,6 +142,7 @@ public class Materias extends javax.swing.JInternalFrame {
        // System.out.println(modelo.getValueAt(fila,columna));
         //System.out.println(modelo.getValueAt(fila, 0));
         idExamen= Integer.parseInt((String) modelo.getValueAt(fila,0)) ;
+        System.out.println(idExamen);
     }//GEN-LAST:event_tablaExamenesMouseClicked
 
     private void cargarCombo() throws RemoteException, NotBoundException, MalformedURLException {

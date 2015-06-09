@@ -52,13 +52,51 @@ public class PreguntaDao extends UnicastRemoteObject implements PreguntaInterfaz
     }
 
     @Override
-    public List<Pregunta> getAllPreguntas() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Pregunta> getAllPreguntas(int idExamen) throws RemoteException {
+         List<Pregunta> preguntas = new ArrayList<>();
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            String q = "from Pregunta where idexamen= :idExamen";
+            Query query = session.createQuery(q);
+            query.setInteger("idExamen", idExamen);
+            preguntas = query.list();
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        } finally {
+
+            session.close();
+        }
+        return preguntas;
     }
 
     @Override
     public Pregunta getPreguntaById(int idPregunta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           Pregunta pregunta = null;
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            String queryString = "from Pregunta where id= :id";
+            Query query = session.createQuery(queryString);
+            query.setInteger("id", idPregunta);
+            pregunta = (Pregunta) query.uniqueResult();
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        } finally {
+            
+            session.close();
+        }
+        return pregunta;
     }
+    
+//    public static void main(String[] args) throws RemoteException {
+//            public static void main(String[] args) throws RemoteException {
+//        PreguntaDao op  =new  PreguntaDao();
+//        Pregunta pre  = op.getPreguntaById(1);
+//        System.out.println(pre.getRespuestaCorrecta());
+//    }
+//    }
 
 }

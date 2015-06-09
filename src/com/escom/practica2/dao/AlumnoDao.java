@@ -68,14 +68,14 @@ public class AlumnoDao extends UnicastRemoteObject implements AlumnoInterfaz {
             tr = session.beginTransaction();
             session.update(alumno);
             session.getTransaction().commit();
-            System.out.println("Agregado Exitosamente");
+          
         } catch (HibernateException e) {
             if (tr != null) {
                 tr.rollback();
             }
             System.out.println(e.toString());
         } finally {
-            session.flush();
+           
             session.close();
 
         }
@@ -99,13 +99,34 @@ public class AlumnoDao extends UnicastRemoteObject implements AlumnoInterfaz {
     }
 
     @Override
-    public Alumno getAlumnoById(int idAlumno) throws RemoteException {
+    public Alumno getAlumnoById(int idAlumno , String alumnoEmail) throws RemoteException {
         Alumno alumno = null;
         Transaction trns = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         try {
             trns = session.beginTransaction();
-            String queryString = "from Alumno where id= :id";
+            String queryString = "from Alumno where matricula= :id and email=:alumnoEmail";
+            Query query = session.createQuery(queryString);
+            query.setInteger("id", idAlumno);
+            query.setString("alumnoEmail",alumnoEmail);
+            alumno = (Alumno) query.uniqueResult();
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        } finally {
+            
+            session.close();
+        }
+        return alumno;
+    }
+    
+     @Override
+    public Alumno getAlumnoByMatricula(int idAlumno ) throws RemoteException {
+        Alumno alumno = null;
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            String queryString = "from Alumno where matricula= :id ";
             Query query = session.createQuery(queryString);
             query.setInteger("id", idAlumno);
             alumno = (Alumno) query.uniqueResult();
@@ -119,12 +140,9 @@ public class AlumnoDao extends UnicastRemoteObject implements AlumnoInterfaz {
     }
 //    public static void main(String[] args) throws RemoteException {
 //        Alumno alumno  = new Alumno ();
-//        alumno.setNombre("Brenda");
-//        alumno.setApellidoPaterno("Fuentes");
-//        alumno.setApellidoPaterno("Hernadez");
-//        alumno.setMatricula(2012630068);
-//        alumno.setEmail("brenda@gmail.com");
 //        AlumnoDao op = new AlumnoDao ();
-//        op.addAlumno(alumno);
+//        alumno = op.getAlumnoByMatricula(2012630068);
+//        System.out.println(alumno.getNombre());
+//       
 //    }
 }

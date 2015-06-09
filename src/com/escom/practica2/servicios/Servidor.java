@@ -25,9 +25,13 @@ public class Servidor {
         AlumnoDao alumnoDao= new AlumnoDao();
         MateriaDao materiaDao = new MateriaDao();
         ExamenDao examenDao  = new ExamenDao();
+        PreguntaDao preguntaDao = new PreguntaDao();
+        RespuestaDao respuestaDao = new RespuestaDao();
         Naming.rebind("ServidorDaoAlumno",alumnoDao);
         Naming.rebind("Materia",materiaDao);
         Naming.rebind("Examen",examenDao);
+        Naming.rebind("Pregunta",preguntaDao);
+        Naming.rebind("Respuesta",respuestaDao);
          System.out.println("servidor corriendo");
         }catch(RemoteException | MalformedURLException e){}
     }

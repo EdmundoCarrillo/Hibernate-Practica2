@@ -15,7 +15,8 @@ public void addAlumno(Alumno alumno)throws RemoteException;
 public void deleteAlumno(Alumno alumno)throws RemoteException;
 public void uptadeAlumno(Alumno alumno)throws RemoteException;
 public List<Alumno> getAllAlumnos()throws RemoteException;
-public Alumno getAlumnoById(int idAlumno)throws RemoteException;
+public Alumno getAlumnoById(int idAlumno ,String email)throws RemoteException;
+public Alumno getAlumnoByMatricula(int idAlumno)throws RemoteException;
 
 
 
