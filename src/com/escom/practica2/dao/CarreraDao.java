@@ -1,19 +1,23 @@
-
 package com.escom.practica2.dao;
 
 /**
  *
  * @author DARTH VADER
  */
-
 import com.escom.practica2.modelo.Carrera;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class CarreraDao {
-    
-     public void addCarrera(Carrera carrera) {
+public class CarreraDao extends UnicastRemoteObject implements CarreraInterfaz {
+
+    public CarreraDao() throws RemoteException {
+        super();
+    }
+
+    public void addCarrera(Carrera carrera) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
@@ -32,5 +36,5 @@ public class CarreraDao {
 
         }
     }
-    
+
 }

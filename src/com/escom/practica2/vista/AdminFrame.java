@@ -91,6 +91,11 @@ public class AdminFrame extends javax.swing.JFrame {
         jMenu2.setText("Control");
 
         jMenuItem7.setText("Carrera");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuItem6.setText("Materias");
@@ -148,8 +153,16 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        CTFrame centro  = new CTFrame();
+        desktop.add(centro);
+        centro.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        CrudCarrera carrera = new CrudCarrera();
+        desktop.add(carrera);
+        carrera.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments

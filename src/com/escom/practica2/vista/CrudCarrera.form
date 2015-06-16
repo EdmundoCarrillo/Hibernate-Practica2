@@ -31,11 +31,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jButton1" pref="123" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField2" max="32767" attributes="0"/>
-                      <Component id="jComboBox1" pref="123" max="32767" attributes="0"/>
-                      <Component id="jTextField1" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jTextField2" max="32767" attributes="0"/>
+                  <Component id="jComboBox1" pref="123" max="32767" attributes="0"/>
+                  <Component id="jTextField1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
@@ -103,6 +101,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

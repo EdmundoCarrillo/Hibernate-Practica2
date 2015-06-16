@@ -3,8 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.escom.practica2.vista;
+
+import com.escom.practica2.modelo.Carrera;
+import com.escom.practica2.modelo.Centrotrabajo;
+import com.escom.practica2.modelo.Materia;
+import com.escom.practica2.servicios.CentroDaoCliente;
+import com.escom.practica2.servicios.MateriaDaoCliente;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -12,11 +24,18 @@ package com.escom.practica2.vista;
  */
 public class CrudCarrera extends javax.swing.JInternalFrame {
 
+    DefaultComboBoxModel value;
+
     /**
      * Creates new form CrudCarrera
      */
     public CrudCarrera() {
-        initComponents();
+        try {
+            initComponents();
+            cargarCombo();
+        } catch (RemoteException | NotBoundException | MalformedURLException ex) {
+            Logger.getLogger(CrudCarrera.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -55,6 +74,11 @@ public class CrudCarrera extends javax.swing.JInternalFrame {
         jLabel3.setText("CT");
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,10 +94,9 @@ public class CrudCarrera extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField2)
-                        .addComponent(jComboBox1, 0, 123, Short.MAX_VALUE)
-                        .addComponent(jTextField1)))
+                    .addComponent(jTextField2)
+                    .addComponent(jComboBox1, 0, 123, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,6 +130,24 @@ public class CrudCarrera extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Carrera carrera = new Carrera();
+        carrera.setNombre("");
+        carrera.setDuracion(WIDTH);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cargarCombo() throws RemoteException, NotBoundException, MalformedURLException {
+        value = new DefaultComboBoxModel();
+        jComboBox1.setModel(value);
+        CentroDaoCliente centro = new CentroDaoCliente();
+        List<Centrotrabajo> lista;
+        lista = centro.getAllCentros();
+        for (int i = 0; i < lista.size(); i++) {
+
+            value.addElement(lista.get(i));
+
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

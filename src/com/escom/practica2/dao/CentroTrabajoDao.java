@@ -1,15 +1,20 @@
 package com.escom.practica2.dao;
 
-/**
- *
- * @author DARTH VADER
- */
+import com.escom.practica2.modelo.Alumno;
 import com.escom.practica2.modelo.Centrotrabajo;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class CentroTrabajoDao {
+public class CentroTrabajoDao extends UnicastRemoteObject implements CentroTrabajoInterfaz {
+
+    public CentroTrabajoDao() throws RemoteException {
+        super();
+    }
 
     public void addCentroTrabajo(Centrotrabajo centroTrabajo) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -25,10 +30,27 @@ public class CentroTrabajoDao {
             }
             System.out.println(e.toString());
         } finally {
-            session.flush();
+
             session.close();
 
         }
+    }
+    
+      @Override
+    public List<Centrotrabajo> getAllCentros() throws RemoteException {
+        List<Centrotrabajo> alumnos = new ArrayList<>();
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            alumnos = session.createQuery("from Centrotrabajo").list();
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        } finally {
+            session.flush();
+            session.close();
+        }
+        return alumnos;
     }
 
 //    public static void main(String[] args) {
@@ -41,5 +63,4 @@ public class CentroTrabajoDao {
 //
 //
 //    }
-
 }

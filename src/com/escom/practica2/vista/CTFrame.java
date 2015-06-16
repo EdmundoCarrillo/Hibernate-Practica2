@@ -6,6 +6,14 @@
 
 package com.escom.practica2.vista;
 
+import com.escom.practica2.modelo.Centrotrabajo;
+import com.escom.practica2.servicios.CentroDaoCliente;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author DARTH VADER
@@ -33,7 +41,14 @@ public class CTFrame extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre:");
 
@@ -71,6 +86,18 @@ public class CTFrame extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            CentroDaoCliente op = new CentroDaoCliente();
+            Centrotrabajo centro  = new Centrotrabajo ();
+            centro.setNombre(jTextField1.getText());
+            op.addCentroTrabajo(centro);
+        } catch (RemoteException | NotBoundException | MalformedURLException ex) {
+            Logger.getLogger(CTFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

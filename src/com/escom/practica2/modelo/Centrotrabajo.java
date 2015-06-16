@@ -48,6 +48,10 @@ public class Centrotrabajo  implements java.io.Serializable {
     public void setCarreras(Set carreras) {
         this.carreras = carreras;
     }
+    
+     public String toString(){
+       return nombre;
+   }
 
 
 
