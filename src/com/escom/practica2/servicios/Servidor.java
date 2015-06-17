@@ -29,6 +29,7 @@ public class Servidor {
         RespuestaDao respuestaDao = new RespuestaDao();
         CentroTrabajoDao centroDao  = new CentroTrabajoDao();
         CarreraDao carreraDao = new CarreraDao();
+        ProfesorDao profesorDao  = new ProfesorDao();
         Naming.rebind("ServidorDaoAlumno",alumnoDao);
         Naming.rebind("Materia",materiaDao);
         Naming.rebind("Examen",examenDao);
@@ -36,6 +37,7 @@ public class Servidor {
         Naming.rebind("Respuesta",respuestaDao);
         Naming.rebind("Centro",centroDao);
         Naming.rebind("Carrera",carreraDao);
+        Naming.rebind("Profesor",profesorDao);
          System.out.println("servidor corriendo");
         }catch(RemoteException | MalformedURLException e){}
     }

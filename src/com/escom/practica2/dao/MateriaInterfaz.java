@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface MateriaInterfaz extends Remote {
     
-//public void addMateria(Materia materia)throws RemoteException; 
+public void addMateria(Materia materia)throws RemoteException; 
 //public void deleteMateria(Materia materia)throws RemoteException;
 //public void uptadeMateria(Materia materia)throws RemoteException;
 public List<Materia> getAllMaterias()throws RemoteException;

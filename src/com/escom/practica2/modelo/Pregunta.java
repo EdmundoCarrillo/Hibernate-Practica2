@@ -69,7 +69,10 @@ public class Pregunta  implements java.io.Serializable {
         this.respuestas = respuestas;
     }
 
-
+    public String toString(){
+    return pregunta;
+    
+    }
 
 
 }

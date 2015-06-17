@@ -20,26 +20,26 @@ public class MateriaDao extends UnicastRemoteObject implements MateriaInterfaz {
         super();
     }
 
-//    @Override
-//    public void addMateria(Materia materia) throws RemoteException {
-//         Session session = HibernateUtil.getSessionFactory().openSession();
-//        Transaction transaction = null;
-//        try {
-//            transaction = session.beginTransaction();
-//            session.save(materia);
-//            session.getTransaction().commit();
-//            System.out.println("Agregado Exitosamente");
-//        } catch (HibernateException e) {
-//            if (transaction != null) {
-//                transaction.rollback();
-//            }
-//            System.out.println(e.toString());
-//        } finally {
-//            session.flush();
-//            session.close();
-//
-//        }
-//    }
+    @Override
+    public void addMateria(Materia materia) throws RemoteException {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(materia);
+            session.getTransaction().commit();
+            System.out.println("Agregado Exitosamente");
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            session.flush();
+            session.close();
+
+        }
+    }
 //
 //    @Override
 //    public void deleteMateria(Materia materia) throws RemoteException {

@@ -5,23 +5,32 @@
  */
 package com.escom.practica2.servicios;
 
-import com.escom.practica2.dao.AlumnoInterfaz;
 import com.escom.practica2.dao.CarreraInterfaz;
 import com.escom.practica2.modelo.Carrera;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  *
  * @author DARTH VADER
  */
 public class CarreraDaoCliente {
-    public void addCarrera(Carrera carrera)throws RemoteException, NotBoundException, MalformedURLException{
-    
-     CarreraInterfaz op = ( CarreraInterfaz) Naming.lookup("Carrera");
+
+    public void addCarrera(Carrera carrera) throws RemoteException, NotBoundException, MalformedURLException {
+
+        CarreraInterfaz op = (CarreraInterfaz) Naming.lookup("Carrera");
         op.addCarrera(carrera);
-    
+
     }
+
+    public List<Carrera> getAllCarrera() throws RemoteException, NotBoundException, MalformedURLException {
+
+        CarreraInterfaz materiaOp = (CarreraInterfaz) Naming.lookup("Carrera");
+        return materiaOp.getAllCarrera();
+    }
+//  
+
 }

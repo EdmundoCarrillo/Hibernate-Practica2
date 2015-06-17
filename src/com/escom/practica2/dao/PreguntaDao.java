@@ -90,7 +90,23 @@ public class PreguntaDao extends UnicastRemoteObject implements PreguntaInterfaz
         }
         return pregunta;
     }
-    
+      @Override
+    public List<Pregunta> getAll() throws RemoteException {
+        List<Pregunta> materias = new ArrayList<>();
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            materias = session.createQuery("from Pregunta").list();
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        } finally {
+
+            session.close();
+        }
+        return materias;
+
+    }
 //    public static void main(String[] args) throws RemoteException {
 //            public static void main(String[] args) throws RemoteException {
 //        PreguntaDao op  =new  PreguntaDao();

@@ -7,6 +7,8 @@ package com.escom.practica2.dao;
 import com.escom.practica2.modelo.Carrera;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -31,10 +33,27 @@ public class CarreraDao extends UnicastRemoteObject implements CarreraInterfaz {
             }
             System.out.println(e.toString());
         } finally {
-            session.flush();
+           
             session.close();
 
         }
+    }
+    
+      @Override
+    public List<Carrera> getAllCarrera() throws RemoteException {
+        List<Carrera> alumnos = new ArrayList<>();
+        Transaction trns = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            trns = session.beginTransaction();
+            alumnos = session.createQuery("from Carrera").list();
+        } catch (HibernateException e) {
+            System.out.println(e.toString());
+        } finally {
+            
+            session.close();
+        }
+        return alumnos;
     }
 
 }

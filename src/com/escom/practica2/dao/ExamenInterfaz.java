@@ -17,10 +17,11 @@ import java.util.List;
  */
 public interface ExamenInterfaz extends Remote {
     
-//public void addAlumno(Alumno alumno)throws RemoteException; 
+public void addExamen(Examen examen)throws RemoteException; 
 //public void deleteAlumno(Alumno alumno)throws RemoteException;
 //public void uptadeAlumno(Alumno alumno)throws RemoteException;
 public List<Examen> getAllExamenes(int idMateria)throws RemoteException;
+public List<Examen> getAll()throws RemoteException;
 //public Alumno getAlumnoById(int idAlumno)throws RemoteException;
 
 

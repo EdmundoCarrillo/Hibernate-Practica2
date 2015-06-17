@@ -26,4 +26,16 @@ public class ExamenDaoCliente {
         ExamenInterfaz examenOp = (ExamenInterfaz) Naming.lookup("Examen");
         return examenOp.getAllExamenes(idMateria);
     }
+    
+     public void addExamen(Examen examen)throws RemoteException, NotBoundException, MalformedURLException  {
+      ExamenInterfaz examenOp = (ExamenInterfaz) Naming.lookup("Examen");
+      examenOp.addExamen(examen);
+      
+     }
+     
+      public List<Examen> getAll() throws RemoteException, NotBoundException, MalformedURLException {
+
+        ExamenInterfaz examenOp = (ExamenInterfaz) Naming.lookup("Examen");
+        return examenOp.getAll();
+    }
 }

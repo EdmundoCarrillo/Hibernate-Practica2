@@ -21,9 +21,20 @@ public class PreguntaDaoCliente {
 
     public List<Pregunta> getAllPreguntas(int idExamen) throws RemoteException, NotBoundException, MalformedURLException {
 
-    PreguntaInterfaz preguntaOp= (PreguntaInterfaz)Naming.lookup("Pregunta");
-    return preguntaOp.getAllPreguntas(idExamen);
-    
+        PreguntaInterfaz preguntaOp = (PreguntaInterfaz) Naming.lookup("Pregunta");
+        return preguntaOp.getAllPreguntas(idExamen);
+
     }
 
+    public void addPregunta(Pregunta pregunta) throws RemoteException, NotBoundException, MalformedURLException {
+        PreguntaInterfaz preguntaOp = (PreguntaInterfaz) Naming.lookup("Pregunta");
+        preguntaOp.addPregunta(pregunta);
+    }
+
+    public List<Pregunta> getAll() throws RemoteException, NotBoundException, MalformedURLException {
+
+        PreguntaInterfaz preguntaOp = (PreguntaInterfaz) Naming.lookup("Pregunta");
+        return preguntaOp.getAll();
+
+    }
 }

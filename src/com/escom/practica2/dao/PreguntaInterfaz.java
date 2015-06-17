@@ -22,4 +22,5 @@ public void deletePregunta(Pregunta pregunta)throws RemoteException;
 public void uptadePregunta(Pregunta pregunta)throws RemoteException;
 public List<Pregunta> getAllPreguntas(int idExmamen)throws RemoteException;
 public Pregunta getPreguntaById(int idPregunta)throws RemoteException;
+public List<Pregunta> getAll()throws RemoteException;
 }

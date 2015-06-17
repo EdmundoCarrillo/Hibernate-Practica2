@@ -20,4 +20,10 @@ public class RespuestaDaoCliente {
         return respuestaOp.getAllRespuestas(idPregunta);
 
     }
+    
+    public void addRespuesta (Respuesta resp) throws RemoteException, NotBoundException, MalformedURLException {
+    RespuestaInterfaz respuestaOp = (RespuestaInterfaz) Naming.lookup("Respuesta");
+    respuestaOp.addRespuesta(resp);
+    
+    }
 }

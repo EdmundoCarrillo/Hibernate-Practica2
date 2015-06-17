@@ -28,7 +28,23 @@ public class RespuestaDao extends UnicastRemoteObject implements RespuestaInterf
 
     @Override
     public void addRespuesta(Respuesta respuesta) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(respuesta);
+            session.getTransaction().commit();
+            System.out.println("Agregado Exitosamente");
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            System.out.println(e.toString());
+        } finally {
+            
+            session.close();
+
+        }
     }
 
     @Override

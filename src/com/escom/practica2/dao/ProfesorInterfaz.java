@@ -5,7 +5,7 @@
  */
 package com.escom.practica2.dao;
 
-import com.escom.practica2.modelo.Carrera;
+import com.escom.practica2.modelo.Profesor;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
  *
  * @author DARTH VADER
  */
-public interface CarreraInterfaz extends Remote{
-    public void addCarrera(Carrera carrera) throws  RemoteException;
-    public List<Carrera> getAllCarrera() throws RemoteException;
+public interface ProfesorInterfaz extends Remote {
+    public List<Profesor> getAllProfesor()throws RemoteException;
 }

@@ -79,6 +79,9 @@ public class Examen  implements java.io.Serializable {
         this.preguntas = preguntas;
     }
     
+    public String toString(){
+       return fecha.toString()+" "+periodo;
+   }
 
 
 

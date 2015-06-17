@@ -24,6 +24,13 @@ public class MateriaDaoCliente {
         MateriaInterfaz materiaOp = (MateriaInterfaz) Naming.lookup("Materia");
         return materiaOp.getAllMaterias();
     }
+    
+    public void addMateria(Materia materia)throws RemoteException, NotBoundException, MalformedURLException{
+    
+    MateriaInterfaz op  = (MateriaInterfaz)Naming.lookup("Materia");
+    op.addMateria(materia);
+    
+    }
 //    public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
 //        MateriaDaoCliente op  = new MateriaDaoCliente();
 //        List<Materia> lista  = op.getAllMaterias();
